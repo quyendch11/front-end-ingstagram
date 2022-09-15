@@ -1,8 +1,18 @@
 import { Modal, useMantineTheme } from "@mantine/core";
+import {Formik,Form,Field} from "formik";
+import {useDispatch, useSelector} from "react-redux";
+import {updateUser} from "../../redux/services/profileService";
 
 function ProfileModal({ modalOpened, setModalOpened }) {
+    const dispatch=useDispatch()
+    const {user}= useSelector(state=>{
+        return state.user
+    })
+  const handleUpdate=(value)=>{
+    updateUser('6322c91ccf3a3b1167109ba8',dispatch,value)
+      setModalOpened(false)
+  }
   const theme = useMantineTheme();
-
   return (
     <Modal
       overlayColor={
@@ -16,68 +26,36 @@ function ProfileModal({ modalOpened, setModalOpened }) {
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
-      <form className="infoForm">
-        <h3>Your info</h3>
+        <Formik initialValues ={user}
+                onSubmit={handleUpdate}>
+            <Form className={"infoForm"}>
+                <h3>Your info</h3>
 
-        <div>
-          <input
-            type="text"
-            className="infoInput"
-            name="FirstName"
-            placeholder="First Name"
-          />
+                <div>
+                    <Field
+                        type="text"
+                        className="infoInput"
+                        name="name"
+                        placeholder="Name"
+                    />
 
-          <input
-            type="text"
-            className="infoInput"
-            name="LastName"
-            placeholder="Last Name"
-          />
-        </div>
+                    <Field
+                        type="text"
+                        className="infoInput"
+                        name="dob"
+                        placeholder="date of birth"
+                    />
+                </div>
+                <div>
+                    Profile Image
+                    <Field type="file" name='profileImg'/>
+                    Cover Image
+                    <Field type="file" name="coverImg" />
+                </div>
 
-        <div>
-          <input
-            type="text"
-            className="infoInput"
-            name="worksAT"
-            placeholder="Works at"
-          />
-        </div>
-
-        <div>
-          <input
-            type="text"
-            className="infoInput"
-            name="livesIN"
-            placeholder="LIves in"
-          />
-
-          <input
-            type="text"
-            className="infoInput"
-            name="Country"
-            placeholder="Country"
-          />
-        </div>
-
-        <div>
-          <input
-            type="text"
-            className="infoInput"
-            placeholder="RelationShip Status"
-          />
-        </div>
-
-
-        <div>
-            Profile Image 
-            <input type="file" name='profileImg'/>
-            Cover Image
-            <input type="file" name="coverImg" />
-        </div>
-
-        <button className="button infoButton">Update</button>
-      </form>
+                <button className="button infoButton">Update</button>
+            </Form>
+        </Formik>
     </Modal>
   );
 }

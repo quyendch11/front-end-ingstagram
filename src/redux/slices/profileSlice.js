@@ -14,12 +14,15 @@ const profileSlice= createSlice({
     initialState,
     reducers:{
         getInfor:(state,action)=>{
-            console.log(action.payload)
             state.user=action.payload.user
+        },
+        editUser:(state,action)=>{
+             state.user = action.payload.user
         }
     }
 })
 export const {
-    getInfor
+    getInfor,
+    updateUser
 } = profileSlice.actions
 export default profileSlice.reducer

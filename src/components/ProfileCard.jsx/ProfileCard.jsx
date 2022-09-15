@@ -3,7 +3,6 @@ import Cover from "../../img/cover.jpg";
 import Profile from "../../img/profileImg.jpg";
 import "./ProfileCard.css";
 import {useDispatch, useSelector} from "react-redux";
-import {getInfor} from "../../redux/slices/profileSlice";
 import {getUserById} from "../../redux/services/profileService";
 const ProfileCard = () => {
     const {user}= useSelector(state=>{
@@ -21,7 +20,7 @@ const ProfileCard = () => {
         <img src={Profile} alt="" />
       </div>
 
-      <div className="ProfileName">
+      <div className="ProfileName" key={user.id}>
         <span>{user.name}</span>
         <span>Senior UI/UX Designer</span>
       </div>
