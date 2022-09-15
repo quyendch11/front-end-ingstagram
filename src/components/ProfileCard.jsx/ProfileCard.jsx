@@ -1,9 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Cover from "../../img/cover.jpg";
 import Profile from "../../img/profileImg.jpg";
 import "./ProfileCard.css";
-
+import {useDispatch, useSelector} from "react-redux";
+import {getInfor} from "../../redux/slices/profileSlice";
+import {getUserById} from "../../redux/services/profileService";
 const ProfileCard = () => {
+    const {user}= useSelector(state=>{
+       return state.user
+    })
+    const dispatch=useDispatch()
+    useEffect(()=>{
+        getUserById('6322c91ccf3a3b1167109ba8',dispatch)
+    },[])
   const ProfilePage = true;
   return (
     <div className="ProfileCard">
@@ -13,7 +22,7 @@ const ProfileCard = () => {
       </div>
 
       <div className="ProfileName">
-        <span>Zendaya MJ</span>
+        <span>{user.name}</span>
         <span>Senior UI/UX Designer</span>
       </div>
 

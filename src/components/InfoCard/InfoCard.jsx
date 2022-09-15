@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import "./InfoCard.css";
 import { UilPen } from "@iconscout/react-unicons";
 import ProfileModal from "../ProfileModal.jsx/ProfileModal";
+import {useSelector} from "react-redux";
 
 const InfoCard = () => {
+    const {user}= useSelector(state=>{
+        return state.user
+    })
   const [modalOpened, setModalOpened] = useState(false);
   return (
     <div className="InfoCard">
@@ -24,23 +28,23 @@ const InfoCard = () => {
 
       <div className="info">
         <span>
-          <b>Status </b>
+          <b>email: </b>
         </span>
-        <span>in Relationship</span>
+        <span>{user.email}</span>
       </div>
 
       <div className="info">
         <span>
-          <b>Lives in </b>
+          <b>date of birth: </b>
         </span>
-        <span>Multan</span>
+        <span>{user.dob}</span>
       </div>
 
       <div className="info">
         <span>
-          <b>Works at </b>
+          <b>user name: </b>
         </span>
-        <span>Zainkeepscode inst</span>
+        <span>{user.username}</span>
       </div>
 
       <button className="button logout-button">Logout</button>
