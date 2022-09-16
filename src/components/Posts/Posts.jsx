@@ -5,8 +5,8 @@ import Post from '../Post/Post'
 const Posts = () => {
   return (
     <div className="Posts">
-        {PostsData.map((post, id)=>{
-            return <Post data={post} id={id}/>
+        {PostsData.map((post, index)=>{
+            return <Post data={post} id={index}/>
         })}
     </div>
   )

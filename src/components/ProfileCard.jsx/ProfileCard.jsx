@@ -10,7 +10,7 @@ const ProfileCard = () => {
     })
     const dispatch=useDispatch()
     useEffect(()=>{
-        getUserById('6322c91ccf3a3b1167109ba8',dispatch)
+        getUserById('63233c866999676c7d2e6383',dispatch)
     },[])
   const ProfilePage = true;
   return (
